@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <title>str clean</title>
+    </head>
+    <body>
+        <textarea id="in" class="grid-elem" placeholder="Input string"></textarea>
+        <textarea id="fn" class="grid-elem" placeholder="Filter function"></textarea>
+        <span id="out" class="grid-elem"></span>
+    </body>
+    <script>
+        const inElem = document.getElementById('in');
+        const fnElem = document.getElementById('fn');
+        const outElem = document.getElementById('out');
+
+        const tryFilter = () => {
+            try{
+                const fn = new Function('str', `let out = str;${fnElem.value};return out;`);
+                return fn(inElem.value);
+            } 
+            catch(err){
+                return err.message;
+            }
+        }
+
+        const update = () => {
+            out.innerHTML = tryFilter();
+        }
+        inElem.oninput = update;
+        fnElem.oninput = update;
+    </script>    
+    <style>
+        body{
+            margin: 0;
+            display: grid;
+            grid-template-areas: 
+                "in out"
+                "fn out";
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        textarea{
+            resize: none;
+        }
+
+        textarea:focus{
+            outline: none;
+        }
+
+        .grid-elem{
+            background-color: #222;
+            border: 0px solid #000;
+            padding: 20px;
+            overflow-y: scroll;
+            color: #fff;
+            scrollbar-width: none;
+        }
+
+        .grid-elem::-webkit-scrollbar{
+            display: none;
+        }
+
+        #in{
+            grid-area: in;
+            border-width: 0 0 2px 0;
+        }
+
+        #fn{
+            grid-area: fn;
+        }
+
+        #out{
+            grid-area: out;
+            border-width: 0 0 0 2px;
+            white-space: pre-line;
+        }
+
+    </style>
+</html>
