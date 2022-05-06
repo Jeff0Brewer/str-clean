@@ -38,13 +38,19 @@
         }
 
         textarea{
-            background-color: #222;
-            border: 0 solid #000;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            background-color: #000;
+            border: 0 solid #fff;
             padding: 20px;
             overflow-y: scroll;
             color: #fff;
             scrollbar-width: none;
             resize: none;
+        }
+
+        textarea::placeholder{
+            color: #ddd;
         }
 
         textarea:focus{
@@ -57,7 +63,7 @@
 
         #in{
             grid-area: in;
-            border-width: 0 0 2px 0;
+            border-width: 0 0 1px 0;
         }
 
         #fn{
@@ -66,7 +72,7 @@
 
         #out{
             grid-area: out;
-            border-width: 0 0 0 2px;
+            border-width: 0 0 0 1px;
         }
 
     </style>
